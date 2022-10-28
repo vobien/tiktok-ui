@@ -1,4 +1,9 @@
 .wrapper {
+  --search-border-radius: 92px;
+  --search-height: 46px;
+  --search-top-space: 10px;
+  --search-button-width: 52px;
+
   width: 100%;
   height: var(--default-layout-header-height);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
@@ -9,4 +14,83 @@
 .inner {
   height: 100%;
   width: var(--default-layout-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+}
+
+.search {
+  width: 361px;
+  height: var(--search-height);
+  background: rgba(22, 24, 35, 0.06);
+  border-radius: var(--search-border-radius);
+  align-items: center;
+  padding-left: 16px;
+  display: flex;
+  position: relative;
+  border: 1.5px solid transparent;
+
+  input {
+    flex: 1;
+    font-size: 1.6rem;
+    background-color: transparent;
+    color: var(--black-color);
+    caret-color: var(--primary-color);
+  }
+
+  input:not(:placeholder-shown) ~ .search-btn {
+    color: rgba(22, 24, 35, 0.75);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 28px;
+    background: rgba(22, 24, 35, 0.12);
+    top: var(--search-top-space);
+    right: var(--search-button-width);
+    height: calc(var(--search-height) - var(--search-top-space) * 2);
+  }
+
+  &:focus-within {
+    border-color: rgba(22, 24, 35, 0.2);
+  }
+}
+
+.clear-btn,
+.loading {
+  padding: 0;
+  font-size: 1.6rem;
+  color: rgba(22, 24, 35, 0.34);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(var(--search-button-width) + 16px);
+}
+
+.search-btn {
+  width: var(--search-button-width);
+  height: 100%;
+  background-color: transparent;
+  border-bottom-right-radius: calc(var(--search-border-radius) / 2);
+  border-top-right-radius: calc(var(--search-border-radius) / 2);
+  font-size: 2.2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(22, 24, 35, 0.34);
+
+  &:hover {
+    background: rgba(22, 24, 35, 0.03);
+    cursor: pointer;
+  }
+
+  &:active {
+    background: rgba(22, 24, 35, 0.06);
+  }
 }
