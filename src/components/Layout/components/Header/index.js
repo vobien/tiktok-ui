@@ -56,7 +56,10 @@ function Header() {
         </Tippy>
 
         <div className={cx('actions')}>
-
+          <Button text>Upload</Button>
+          <Button primary rounded className={cx('custom-login')} leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
+            Log in
+          </Button>
         </div>
       </div>
     </div>
