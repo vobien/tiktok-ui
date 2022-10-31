@@ -22,8 +22,12 @@
 .logo {
 }
 
+.search-result,
 .search {
   width: 361px;
+}
+
+.search {
   height: var(--search-height);
   background: rgba(22, 24, 35, 0.06);
   border-radius: var(--search-border-radius);
@@ -61,6 +65,18 @@
   }
 }
 
+.search-result {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.search-title {
+  padding: 0px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(22, 24, 35, 0.5);
+}
+
 .clear-btn,
 .loading {
   padding: 0;
@@ -93,4 +109,8 @@
   &:active {
     background: rgba(22, 24, 35, 0.06);
   }
+}
+
+.custom-login {
+  color: red;
 }
