@@ -26,6 +26,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { AccountItem } from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -69,7 +70,7 @@ const MENU_ITEMS = [
 const currentUser = {
   name: 'tri',
   avartar:
-    'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/5954b15af7d6c1de53acef5f11291a1d~c5_100x100.jpeg?x-expires=1667444400&x-signature=k4Dau4WYcdag6S26eaYqGznmSXc%3D',
+    'p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/5954b15af7d6c1de53acef5f11291a1d~c5_100x100.jpeg?x-expires=1667444400&x-signature=k4Dau4WYcdag6S26eaYqGznmSXc%3D',
 };
 
 function Header() {
@@ -139,7 +140,12 @@ function Header() {
 
           <Menu items={MENU_ITEMS}>
             {currentUser ? (
-              <img className={cx('user-avatar')} src={currentUser.avartar} alt={currentUser.name} />
+              <Image
+                fallback="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png"
+                className={cx('user-avatar')}
+                src={currentUser.avartar}
+                alt={currentUser.name}
+              />
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />
