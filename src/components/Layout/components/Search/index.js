@@ -7,25 +7,29 @@ import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { AccountItem } from '~/components/AccountItem';
 import { useEffect, useRef, useState } from 'react';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
+
 function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const queryValue = useDebounce(searchValue, 800);
+
   const inputRef = useRef();
 
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!queryValue.trim()) {
       setSearchResult([]);
       return;
     }
 
     setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(queryValue)}&type=less`)
       .then((res) => res.json())
       .then((json) => {
         setSearchResult(json.data);
@@ -35,7 +39,7 @@ function Search() {
         setLoading(false);
         console.log(error);
       });
-  }, [searchValue]);
+  }, [queryValue]);
 
   const handleClear = () => {
     setSearchValue('');
