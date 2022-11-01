@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleXmark,
+  faCloudArrowUp,
   faEllipsisVertical,
   faGlobeAsia,
   faKeyboard,
   faMagnifyingGlass,
+  faMessage,
   faMoon,
   faQuestionCircle,
   faSignIn,
@@ -13,7 +15,10 @@ import {
   faToggleOff,
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+
+import 'tippy.js/dist/tippy.css';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images/index';
@@ -61,6 +66,12 @@ const MENU_ITEMS = [
   },
 ];
 
+const currentUser = {
+  name: 'tri',
+  avartar:
+    'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/5954b15af7d6c1de53acef5f11291a1d~c5_100x100.jpeg?x-expires=1667444400&x-signature=k4Dau4WYcdag6S26eaYqGznmSXc%3D',
+};
+
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
 
@@ -77,7 +88,7 @@ function Header() {
           <img src={images.logo} alt="logo tiktok" />
         </div>
 
-        <Tippy
+        <HeadlessTippy
           placement="bottom"
           visible={searchResult?.length > 0}
           interactive="true"
@@ -102,16 +113,38 @@ function Header() {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </div>
-        </Tippy>
+        </HeadlessTippy>
 
         <div className={cx('actions')}>
-          <Button text>Upload</Button>
-          <Button primary>Log in</Button>
+          {currentUser ? (
+            <>
+              <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                </button>
+              </Tippy>
+
+              <Tippy delay={[0, 200]} content="Message" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <FontAwesomeIcon icon={faMessage} />
+                </button>
+              </Tippy>
+            </>
+          ) : (
+            <>
+              <Button text>Upload</Button>
+              <Button primary>Log in</Button>
+            </>
+          )}
 
           <Menu items={MENU_ITEMS}>
-            <button className={cx('more-btn')}>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
-            </button>
+            {currentUser ? (
+              <img className={cx('user-avatar')} src={currentUser.avartar} alt={currentUser.name} />
+            ) : (
+              <button className={cx('more-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
+            )}
           </Menu>
         </div>
       </div>

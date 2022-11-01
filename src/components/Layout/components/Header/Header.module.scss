@@ -118,3 +118,23 @@
   padding: 8px;
   cursor: pointer;
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.action-btn {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #161823;
+  margin: 4px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
