@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+.back-btn {
+    background-color: transparent;
+    margin: 15px;
+}
+
+.header-title {
+    flex: 1;
+}

@@ -28,6 +28,21 @@ const MENU_ITEMS = [
   {
     leftIcon: <FontAwesomeIcon icon={faGlobeAsia} />,
     title: 'English',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     leftIcon: <FontAwesomeIcon icon={faQuestionCircle} />,
@@ -42,6 +57,7 @@ const MENU_ITEMS = [
     leftIcon: <FontAwesomeIcon icon={faMoon} />,
     title: 'Dark mode',
     rightIcon: <FontAwesomeIcon icon={faToggleOff} />,
+    separate: true,
   },
 ];
 
