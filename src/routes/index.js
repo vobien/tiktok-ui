@@ -7,7 +7,7 @@ import Upload from '~/pages/Upload';
 const publicRoutes = [
   { path: '/', component: Home },
   { path: '/following', component: Following },
-  { path: '/profile', component: Profile, layout: HeaderOnly },
+  { path: '/@:nickname', component: Profile, layout: HeaderOnly },
   { path: '/upload', component: Upload, layout: null },
 ];
 
