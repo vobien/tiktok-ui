@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faL, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import HeadlessTippy from '@tippyjs/react/headless';
 
@@ -8,6 +8,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { AccountItem } from '~/components/AccountItem';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/hooks';
+import searchApi from '~/api/searchApi';
 
 const cx = classNames.bind(styles);
 
@@ -28,18 +29,24 @@ function Search() {
     }
 
     setLoading(true);
-
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(queryValue)}&type=less`)
-      .then((res) => res.json())
-      .then((json) => {
-        setSearchResult(json.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.log(error);
-      });
+    searchAccounts();
   }, [queryValue]);
+
+  const searchAccounts = async () => {
+    try {
+      const res = await searchApi.getAccounts('users/search', {
+        params: {
+          q: encodeURIComponent(queryValue),
+          type: 'less',
+        },
+      });
+      setSearchResult(res.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
 
   const handleClear = () => {
     setSearchValue('');
