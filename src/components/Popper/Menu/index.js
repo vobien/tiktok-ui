@@ -9,7 +9,7 @@ import MenuItem from './MenuItem';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [] }) {
+function Menu({ children, hideOnClick = false, items = [] }) {
   const [history, setHistory] = useState([{ data: items }]);
   const currentMenu = history[history?.length - 1];
 
@@ -31,6 +31,7 @@ function Menu({ children, items = [] }) {
 
   return (
     <Tippy
+      hideOnClick={hideOnClick}
       delay={[0, 700]}
       placement="bottom-end"
       interactive
