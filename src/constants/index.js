@@ -1,7 +1,7 @@
-// define all constant of routes
-export const routeConfig = {
-  home: '/',
-  following: '/following',
-  profile: '/@:nickname',
-  upload: '/upload',
+import routes from './routeConfigs';
+
+const config = {
+  routes,
 };
+
+export default config;
