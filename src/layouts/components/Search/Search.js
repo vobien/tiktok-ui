@@ -89,7 +89,7 @@ function Search() {
             spellCheck={false}
             onFocus={() => setShowResult(true)}
           />
-          {!loading && showResult && searchResult.length > 0 && (
+          {!loading && searchValue && (
             <button className={cx('clear-btn')} onClick={handleClear}>
               <FontAwesomeIcon icon={faCircleXmark} />
             </button>
