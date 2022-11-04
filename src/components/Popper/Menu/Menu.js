@@ -30,6 +30,9 @@ function Menu({ children, hideOnClick = false, items = [] }) {
     setHistory((prev) => prev.slice(0, prev?.length - 1));
   };
 
+  // reset menu to first page
+  const handleReset = () => setHistory((prev) => prev.slice(0, 1));
+
   return (
     <Tippy
       hideOnClick={hideOnClick}
@@ -44,7 +47,7 @@ function Menu({ children, hideOnClick = false, items = [] }) {
           </PopperWrapper>
         </div>
       )}
-      onHide={() => setHistory((prev) => prev.slice(0, 1))}
+      onHide={handleReset}
     >
       {children}
     </Tippy>
